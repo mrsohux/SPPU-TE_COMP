@@ -1,0 +1,95 @@
+comp226@comp226-desktop:~$ sudo service mongodb start
+[sudo] password for comp226: 
+start: Job is already running: mongodb
+comp226@comp226-desktop:~$ 
+comp226@comp226-desktop:~$ mongo
+MongoDB shell version: 2.4.9
+connecting to: test
+> db.help()
+DB methods:
+	db.addUser(userDocument)
+	db.adminCommand(nameOrDocument) - switches to 'admin' db, and runs command [ just calls db.runCommand(...) ]
+	db.auth(username, password)
+	db.cloneDatabase(fromhost)
+	db.commandHelp(name) returns the help for the command
+	db.copyDatabase(fromdb, todb, fromhost)
+	db.createCollection(name, { size : ..., capped : ..., max : ... } )
+	db.currentOp() displays currently executing operations in the db
+	db.dropDatabase()
+	db.eval(func, args) run code server-side
+	db.fsyncLock() flush data to disk and lock server for backups
+	db.fsyncUnlock() unlocks server following a db.fsyncLock()
+	db.getCollection(cname) same as db['cname'] or db.cname
+	db.getCollectionNames()
+	db.getLastError() - just returns the err msg string
+	db.getLastErrorObj() - return full status object
+	db.getMongo() get the server connection object
+	db.getMongo().setSlaveOk() allow queries on a replication slave server
+	db.getName()
+	db.getPrevError()
+	db.getProfilingLevel() - deprecated
+	db.getProfilingStatus() - returns if profiling is on and slow threshold
+	db.getReplicationInfo()
+	db.getSiblingDB(name) get the db at the same server as this one
+	db.hostInfo() get details about the server's host
+	db.isMaster() check replica primary status
+	db.killOp(opid) kills the current operation in the db
+	db.listCommands() lists all the db commands
+	db.loadServerScripts() loads all the scripts in db.system.js
+	db.logout()
+	db.printCollectionStats()
+	db.printReplicationInfo()
+	db.printShardingStatus()
+	db.printSlaveReplicationInfo()
+	db.removeUser(username)
+	db.repairDatabase()
+	db.resetError()
+	db.runCommand(cmdObj) run a database command.  if cmdObj is a string, turns it into { cmdObj : 1 }
+	db.serverStatus()
+	db.setProfilingLevel(level,<slowms>) 0=off 1=slow 2=all
+	db.setVerboseShell(flag) display extra information in shell output
+	db.shutdownServer()
+	db.stats()
+	db.version() current version of the server
+> db.stats()
+{
+	"db" : "test",
+	"collections" : 2,
+	"objects" : 1,
+	"avgObjSize" : 36,
+	"dataSize" : 36,
+	"storageSize" : 8192,
+	"numExtents" : 2,
+	"indexes" : 0,
+	"indexSize" : 0,
+	"fileSize" : 201326592,
+	"nsSizeMB" : 16,
+	"dataFileVersion" : {
+		"major" : 4,
+		"minor" : 5
+	},
+	"ok" : 1
+}
+> use Mymango
+switched to db Mymango
+> db
+Mymango
+
+> show dbs
+DBMS	0.203125GB
+TE	0.203125GB
+local	0.078125GB
+sakshi	0.203125GB
+student	0.203125GB
+test	0.203125GB
+> db.movie.insert({"name":"Pratiksha"})
+> show dbs
+DBMS	0.203125GB
+Mymango	0.203125GB
+TE	0.203125GB
+local	0.078125GB
+sakshi	0.203125GB
+student	0.203125GB
+test	0.203125GB
+> 
+

@@ -1,0 +1,390 @@
+Assignment No:- 3
+Design at least 10 queries for suitable database application using SQL DML staement: insert,update,delete with operator,functions and set operator.
+
+mysql> create database College;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use College;
+Database changed
+mysql> create table te_student(roll_no int,name char(40),division char(20),branch char(40),city char(40),marks int);
+Query OK, 0 rows affected (0.07 sec)
+ 
+ INSERT:
+ mysql> insert into te_student value(37,'Pratiksha','A','Comp','Supa',64);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(38,'Ruchita','A','Comp','Pune',62);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into te_student value(39,'Vishal','A','Comp','Nagar',65);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into te_student value(40,'Shubham','A','Comp','Rahuri',56);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(41,'Atul','A','Comp','Pune',58);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(42,'Kshitija','A','Comp','Ahmednagar',74);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into te_student value(43,'Komal','A','Comp','Supa',60);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(44,'Snehal','A','Comp','Rahuri',61);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into te_student value(45,'Rohan','A','Comp','Wagholi',63);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(46,'shweta','A','Comp','Parner',54);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into te_student value(47,'Durga','A','Comp','Washim',56);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> desc te_student;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| roll_no  | int(11)  | YES  |     | NULL    |       |
+| name     | char(40) | YES  |     | NULL    |       |
+| division | char(20) | YES  |     | NULL    |       |
+| branch   | char(40) | YES  |     | NULL    |       |
+| city     | char(40) | YES  |     | NULL    |       |
+| marks    | int(11)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select name,city from te_student;
++-----------+------------+
+| name      | city       |
++-----------+------------+
+| Pratiksha | Supa       |
+| Ruchita   | Pune       |
+| Vishal    | Nagar      |
+| Shubham   | Rahuri     |
+| Atul      | Pune       |
+| Kshitija  | Ahmednagar |
+| Komal     | Supa       |
+| Snehal    | Rahuri     |
+| Rohan     | Wagholi    |
+| shweta    | Parner     |
+| Durga     | Washim     |
++-----------+------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from te_student;
++---------+-----------+----------+--------+------------+-------+
+| roll_no | name      | division | branch | city       | marks |
++---------+-----------+----------+--------+------------+-------+
+|      37 | Pratiksha | A        | Comp   | Supa       |    64 |
+|      38 | Ruchita   | A        | Comp   | Pune       |    62 |
+|      39 | Vishal    | A        | Comp   | Nagar      |    65 |
+|      40 | Shubham   | A        | Comp   | Rahuri     |    56 |
+|      41 | Atul      | A        | Comp   | Pune       |    58 |
+|      42 | Kshitija  | A        | Comp   | Ahmednagar |    74 |
+|      43 | Komal     | A        | Comp   | Supa       |    60 |
+|      44 | Snehal    | A        | Comp   | Rahuri     |    61 |
+|      45 | Rohan     | A        | Comp   | Wagholi    |    63 |
+|      46 | shweta    | A        | Comp   | Parner     |    54 |
+|      47 | Durga     | A        | Comp   | Washim     |    56 |
++---------+-----------+----------+--------+------------+-------+
+11 rows in set (0.00 sec)
+
+RELATIONAL OPERATOR:
+mysql> select name from te_student where marks <75;
++-----------+
+| name      |
++-----------+
+| Pratiksha |
+| Ruchita   |
+| Vishal    |
+| Shubham   |
+| Atul      |
+| Kshitija  |
+| Komal     |
+| Snehal    |
+| Rohan     |
+| shweta    |
+| Durga     |
++-----------+
+11 rows in set (0.00 sec)
+mysql> select name from te_student where branch ='comp' and city ='Pune';
++---------+
+| name    |
++---------+
+| Ruchita |
+| Atul    |
++---------+
+2 rows in set (0.00 sec)
+mysql> select name from te_student where marks> 75;
++----------+
+| name     |
++----------+
+| Kshitija |
++----------+
+1 row in set (0.00 sec)
+
+LIKE OPERATOR:-
+mysql> select name from te_student where name like 'S%';
++---------+
+| name    |
++---------+
+| Shubham |
+| Snehal  |
+| shweta  |
++---------+
+3 rows in set (0.00 sec)
+
+BETWEEN OPERATOR:-
+mysql> select name from te_student where marks between 50 and 60;
++---------+
+| name    |
++---------+
+| Shubham |
+| Atul    |
+| Komal   |
+| shweta  |
+| Durga   |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> update te_student set branch='IT' where roll_no=39;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select name,branch from te_student where roll_no=39;
++--------+--------+
+| name   | branch |
++--------+--------+
+| Vishal | IT     |
++--------+--------+
+1 row in set (0.00 sec)
+
+DELETE SATEMENT:-
+mysql> delete from te_student where division='BE';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from te_student where division='BE';
+Empty set (0.00 sec)
+
+mysql> create table TE_student(roll_no int,name char(40));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc TE_student;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| roll_no | int(11)  | YES  |     | NULL    |       |
+| name    | char(40) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table TE_student add primary key (roll_no);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table te_student add primary key (roll_no);
+Query OK, 10 rows affected (0.21 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> desc te_student;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| roll_no  | int(11)  | NO   | PRI | 0       |       |
+| name     | char(40) | YES  |     | NULL    |       |
+| division | char(20) | YES  |     | NULL    |       |
+| branch   | char(40) | YES  |     | NULL    |       |
+| city     | char(40) | YES  |     | NULL    |       |
+| marks    | int(11)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc TE_student;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| roll_no | int(11)  | NO   | PRI | 0       |       |
+| name    | char(40) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select roll_no from te_student union select roll_no from TE_student;
++---------+
+| roll_no |
++---------+
+|      37 |
+|      38 |
+|      40 |
+|      41 |
+|      42 |
+|      43 |
+|      44 |
+|      45 |
+|      46 |
+|      47 |
++---------+
+10 rows in set (0.03 sec)
+
+mysql> insert into TE_student value(1,'Akshay');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into TE_student value(37,'Rutwik');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select roll_no from te_student union select roll_no from TE_student;
++---------+
+| roll_no |
++---------+
+|      37 |
+|      38 |
+|      40 |
+|      41 |
+|      42 |
+|      43 |
+|      44 |
+|      45 |
+|      46 |
+|      47 |
+|       1 |
++---------+
+11 rows in set (0.00 sec)
+
+mysql> select upper(name) as uppercasename from te_student;
++---------------+
+| uppercasename |
++---------------+
+| PRATIKSHA     |
+| RUCHITA       |
+| SHUBHAM       |
+| ATUL          |
+| KSHITIJA      |
+| KOMAL         |
+| SNEHAL        |
+| ROHAN         |
+| SHWETA        |
+| DURGA         |
++---------------+
+10 rows in set (0.02 sec)
+
+mysql> select conv(marks,10,2) from te_student;
++------------------+
+| conv(marks,10,2) |
++------------------+
+| 1000000          |
+| 111110           |
+| 111000           |
+| 111010           |
+| 1001010          |
+| 111100           |
+| 111101           |
+| 111111           |
+| 110110           |
+| 111000           |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> select conv(marks,10,16) from te_student;
++-------------------+
+| conv(marks,10,16) |
++-------------------+
+| 40                |
+| 3E                |
+| 38                |
+| 3A                |
+| 4A                |
+| 3C                |
+| 3D                |
+| 3F                |
+| 36                |
+| 38                |
++-------------------+
+10 rows in set (0.00 sec)
+
+mysql> select name from te_student union all select  name from TE_student;
++-----------+
+| name      |
++-----------+
+| Pratiksha |
+| Ruchita   |
+| Shubham   |
+| Atul      |
+| Kshitija  |
+| Komal     |
+| Snehal    |
+| Rohan     |
+| shweta    |
+| Durga     |
+| Akshay    |
+| Rutwik    |
++-----------+
+12 rows in set (0.00 sec)
+
+mysql> select distinct city,name from te_student;
++------------+-----------+
+| city       | name      |
++------------+-----------+
+| Supa       | Pratiksha |
+| Pune       | Ruchita   |
+| Rahuri     | Shubham   |
+| Pune       | Atul      |
+| Ahmednagar | Kshitija  |
+| Supa       | Komal     |
+| Rahuri     | Snehal    |
+| Wagholi    | Rohan     |
+| Parner     | shweta    |
+| Washim     | Durga     |
++------------+-----------+
+10 rows in set (0.02 sec)
+
+mysql> select distinct city from te_student;
++------------+
+| city       |
++------------+
+| Supa       |
+| Pune       |
+| Rahuri     |
+| Ahmednagar |
+| Wagholi    |
+| Parner     |
+| Washim     |
++------------+
+7 rows in set (0.00 sec)
+
+DIFFERENCE:
+
+mysql> select roll_no from te_student left join TE_student using(roll_no) where TE_student.roll_no is null;
++---------+
+| roll_no |
++---------+
+|      38 |
+|      40 |
+|      41 |
+|      42 |
+|      43 |
+|      44 |
+|      45 |
+|      46 |
+|      47 |
++---------+
+9 rows in set (0.00 sec)
+
+INTERSECT:-
+mysql> select distinct roll_no from te_student inner join TE_student using(roll_no);
++---------+
+| roll_no |
++---------+
+|      37 |
++---------+
+1 row in set (0.02 sec)
+
+mysql> select distinct roll_no from te_student where roll_no in(select roll_no from TE_student);
++---------+
+| roll_no |
++---------+
+|      37 |
++---------+
+1 row in set (0.02 sec)
+

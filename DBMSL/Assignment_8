@@ -1,0 +1,101 @@
+mysql> use Assignment_8;
+Database changed
+mysql> create table N_rollcll(Roll int,Name char(20),Address varchar(20));
+Query OK, 0 rows affected (0.58 sec)
+
+mysql> create table O_rollcll(Roll int,Name char(20),Address varchar(20));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> delimiter $$
+mysql> insert into O_rollcll values(1,'Pratiksha','Ahmednagar');
+    -> $$
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from O_rollcll;
+    -> $$
++------+-----------+------------+
+| Roll | Name      | Address    |
++------+-----------+------------+
+|    1 | Pratiksha | Ahmednagar |
++------+-----------+------------+
+1 row in set (0.04 sec)
+
+mysql> select * from N_rollcll;
+    -> $$
+Empty set (0.00 sec)
+
+
+PROCEDURE USING CURSOR:--
+
+create procedure pcu3()
+begin
+declare rno int;
+declare exit_loop boolean;
+declare cu cursor for select Roll from O_rollcll;
+declare continue handler for not found set exit_loop = true;
+open cu;
+emp_loop: loop
+fetch cu into rno;
+if not exists(select * from N_rollcll where Roll=rno) then
+insert into N_rollcll select * from O_rollcll where Roll=rno;
+end if;
+if exit_loop then
+leave emp_loop;
+end if;
+end loop emp_loop;
+close cu;
+end
+
+CALL PROCEDURE:-
+
+mysql> call pcu3();
+    -> $$
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+AFTER CALLING PROCEDURE:-
+
+mysql> select * from N_rollcll$$
++------+-----------+------------+
+| Roll | Name      | Address    |
++------+-----------+------------+
+|    1 | Pratiksha | Ahmednagar |
++------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into O_rollcll values(2,'Hrishi','Akola');
+    -> $$
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from O_rollcll;
+    -> $$
++------+-----------+------------+
+| Roll | Name      | Address    |
++------+-----------+------------+
+|    1 | Pratiksha | Ahmednagar |
+|    2 | Hrishi    | Akola      |
++------+-----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from N_rollcll$$
++------+-----------+------------+
+| Roll | Name      | Address    |
++------+-----------+------------+
+|    1 | Pratiksha | Ahmednagar |
++------+-----------+------------+
+1 row in set (0.00 sec)
+mysql> call pcu3(); 
+    -> $$
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select * from N_rollcll$$
++------+-----------+------------+
+| Roll | Name      | Address    |
++------+-----------+------------+
+|    1 | Pratiksha | Ahmednagar |
+|    2 | Hrishi    | Akola      |
++------+-----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
+

@@ -1,0 +1,536 @@
+
+SORT THE COMPANY NAME:-
+
+> db.Product.find().sort({Company:1}).pretty()
+{
+	"_id" : ObjectId("5bb5aac79241144e4875ab78"),
+	"name" : "Apple Juice",
+	"company" : "Fruit Flaour",
+	"cost" : 20
+}
+{
+	"_id" : ObjectId("5bb5aad79241144e4875ab79"),
+	"name" : "Mango Juice",
+	"company" : "Fruit Flaour",
+	"cost" : 20
+}
+{
+	"_id" : ObjectId("5bb5aaea9241144e4875ab7a"),
+	"name" : "PineApple Juice",
+	"company" : "Fruit Flaour",
+	"cost" : 15
+}
+{
+	"_id" : ObjectId("5bb5ab069241144e4875ab7b"),
+	"name" : "Badaam Juice",
+	"company" : "Fruit Flaour",
+	"cost" : 15
+}
+{
+	"_id" : ObjectId("5bb5acbcb92966a2b336a2f7"),
+	"name" : "PineApple Juice",
+	"company" : "Fruit Zatka",
+	"cost" : 20
+}
+{
+	"_id" : ObjectId("5bb5accab92966a2b336a2f8"),
+	"name" : "Apple Juice",
+	"company" : "Fruit Zatka",
+	"cost" : 19
+}
+{
+	"_id" : ObjectId("5bb8705f4340b49147fa8f4c"),
+	"Name" : "Apple Juice",
+	"Company" : "Aapla Juice",
+	"Cost" : 15
+}
+{
+	"_id" : ObjectId("5bb8706e4340b49147fa8f4d"),
+	"Name" : "PineApple Juice",
+	"Company" : "Aapla Juice",
+	"Cost" : 18
+}
+{
+	"_id" : ObjectId("5bb875434340b49147fa8f54"),
+	"Name" : "PineApple Juice",
+	"Company" : "Aapla Juice",
+	"Cost" : 19
+}
+{
+	"_id" : ObjectId("5bb875584340b49147fa8f55"),
+	"Name" : "Apple Juice",
+	"Company" : "Aapla Juice",
+	"Cost" : 15
+}
+{
+	"_id" : ObjectId("5bb870854340b49147fa8f4e"),
+	"Name" : "PineApple Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 18
+}
+{
+	"_id" : ObjectId("5bb8708c4340b49147fa8f4f"),
+	"Name" : "Apple Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 18
+}
+{
+	"_id" : ObjectId("5bb870a24340b49147fa8f50"),
+	"Name" : "Badaam Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 20
+}
+{
+	"_id" : ObjectId("5bb875104340b49147fa8f51"),
+	"Name" : "PineApple Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 18
+}
+{
+	"_id" : ObjectId("5bb8751e4340b49147fa8f52"),
+	"Name" : "Badaam Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 20
+}
+{
+	"_id" : ObjectId("5bb875324340b49147fa8f53"),
+	"Name" : "Apple Juice",
+	"Company" : "Fruit Flavour",
+	"Cost" : 18
+}
+> 
+DISTINCT COMPANY:-
+
+> db.Product.distinct('Company')
+[ "Aapla Juice", "Fruit Flavour" ]
+
+COMPANY NAME WITH COUNT:-
+> db.Product.distinct('Company').length
+2
+
+DISPLAY FIRST DOCUMENT:-
+
+> db.Product.find().limit(1).pretty()
+{
+	"_id" : ObjectId("5bb5aac79241144e4875ab78"),
+	"name" : "Apple Juice",
+	"company" : "Fruit Flaour",
+	"cost" : 20
+}
+
+SKIP FIRST TWO DOCUMENTS:-
+
+> db.Product.aggregate({$skip:2})
+{
+	"result" : [
+		{
+			"_id" : ObjectId("5bb5aaea9241144e4875ab7a"),
+			"name" : "PineApple Juice",
+			"company" : "Fruit Flaour",
+			"cost" : 15
+		},
+		{
+			"_id" : ObjectId("5bb5ab069241144e4875ab7b"),
+			"name" : "Badaam Juice",
+			"company" : "Fruit Flaour",
+			"cost" : 15
+		},
+		{
+			"_id" : ObjectId("5bb5acbcb92966a2b336a2f7"),
+			"name" : "PineApple Juice",
+			"company" : "Fruit Zatka",
+			"cost" : 20
+		},
+		{
+			"_id" : ObjectId("5bb5accab92966a2b336a2f8"),
+			"name" : "Apple Juice",
+			"company" : "Fruit Zatka",
+			"cost" : 19
+		},
+		{
+			"_id" : ObjectId("5bb8705f4340b49147fa8f4c"),
+			"Name" : "Apple Juice",
+			"Company" : "Aapla Juice",
+			"Cost" : 15
+		},
+		{
+			"_id" : ObjectId("5bb8706e4340b49147fa8f4d"),
+			"Name" : "PineApple Juice",
+			"Company" : "Aapla Juice",
+			"Cost" : 18
+		},
+		{
+			"_id" : ObjectId("5bb870854340b49147fa8f4e"),
+			"Name" : "PineApple Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 18
+		},
+		{
+			"_id" : ObjectId("5bb8708c4340b49147fa8f4f"),
+			"Name" : "Apple Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 18
+		},
+		{
+			"_id" : ObjectId("5bb870a24340b49147fa8f50"),
+			"Name" : "Badaam Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 20
+		},
+		{
+			"_id" : ObjectId("5bb875104340b49147fa8f51"),
+			"Name" : "PineApple Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 18
+		},
+		{
+			"_id" : ObjectId("5bb8751e4340b49147fa8f52"),
+			"Name" : "Badaam Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 20
+		},
+		{
+			"_id" : ObjectId("5bb875324340b49147fa8f53"),
+			"Name" : "Apple Juice",
+			"Company" : "Fruit Flavour",
+			"Cost" : 18
+		},
+		{
+			"_id" : ObjectId("5bb875434340b49147fa8f54"),
+			"Name" : "PineApple Juice",
+			"Company" : "Aapla Juice",
+			"Cost" : 19
+		},
+		{
+			"_id" : ObjectId("5bb875584340b49147fa8f55"),
+			"Name" : "Apple Juice",
+			"Company" : "Aapla Juice",
+			"Cost" : 15
+		}
+	],
+	"ok" : 1
+}
+> 
+
+FOR LOOP:-	
+
+"_id" : ObjectId("5bb8799d4340b49147fa8f5f"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f60"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f61"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f62"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f63"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f64"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f65"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f66"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f67"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f68"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f69"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6a"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6b"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6c"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6d"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+
+Type "it" for more
+
+> db.Staff.find({Staff_id:1}).pretty()
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5a"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5b"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5c"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5d"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5e"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f5f"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f60"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f61"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f62"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f63"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f64"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f65"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f66"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f67"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f68"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f69"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6a"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6b"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6c"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("5bb8799d4340b49147fa8f6d"),
+	"Staff_id" : 1,
+	"staff_name" : "Pratiksha",
+	"age" : 20
+}
+Type "it" for more
+
+> db.createCollection("Staff2")
+{ "ok" : 1 }
+
+> db.Staff2.insert([{Staff_id:1,staff_name:"Pratiksha",age:20},{Staff_id:2,staff_name:"Hrishi",age:19},{Staff_id:3,staff_name:"Komal",age:21}])
+
+CREATE SINGLE INDEX:-
+
+> db.Staff2.createIndex({staff_name:1})
+
+CREATE COMPOUND INDEXES:-
+
+> db.Staff2.createIndex({staff_name:1,Staff_id:-1})
+> db.Staff2.createIndex({age:1,staff_name:-1})
+
+DISPLAY INDEXES:-
+
+> db.Staff2.getIndexes()
+[
+	{
+		"v" : 1,
+		"key" : {
+			"_id" : 1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "_id_"
+	},
+	{
+		"v" : 1,
+		"key" : {
+			"staff_name" : 1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "staff_name_1"
+	},
+	{
+		"v" : 1,
+		"key" : {
+			"staff_name" : 1,
+			"Staff_id" : -1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "staff_name_1_Staff_id_-1"
+	},
+	{
+		"v" : 1,
+		"key" : {
+			"age" : 1,
+			"staff_name" : -1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "age_1_staff_name_-1"
+	}
+
+DROP INDEXES:-
+
+> db.Staff2.dropIndexes()
+{
+	"nIndexesWas" : 4,
+	"msg" : "non-_id indexes dropped for collection",
+	"ok" : 1
+}
+> db.Staff2.getIndexes()
+[
+	{
+		"v" : 1,
+		"key" : {
+			"_id" : 1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "_id_"
+	}
+]
+
+CREATE UNIQUE INDEX:-
+
+> db.Staff2.createIndex({staff_name:1},{unique:true})
+
+> db.Staff2.getIndexes()
+[
+	{
+		"v" : 1,
+		"key" : {
+			"_id" : 1
+		},
+		"ns" : "MONGO3.Staff2",
+		"name" : "_id_"
+	},
+	{
+		"v" : 1,
+		"key" : {
+			"staff_name" : 1
+		},
+		"unique" : true,
+		"ns" : "MONGO3.Staff2",
+		"name" : "staff_name_1"
+	}
+]
+
+ERROR BCOZ We create unique index:-
+
+> db.Staff2.insert({Staff_id:2,staff_name:"Hrishi",age:19})
+E11000 duplicate key error index: MONGO3.Staff2.$staff_name_1  dup key: { : "Hrishi" }
+> 
+
+

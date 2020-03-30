@@ -1,0 +1,484 @@
+comp226@comp226-desktop:~$ mongo
+MongoDB shell version: 2.4.9
+connecting to: test
+> use mongo2
+switched to db mongo2
+
+CREATE COLLECTION:
+
+
+> db.createCollection("MONGO2",{capped:true,autoIndexID:true,size:6142800,max:10000})
+{ "ok" : 1 }
+> db.MONGO2.insert({Ename:"Pratiksha",Eid:1,Age:19,Post:"DataAdmin",Add:"Ahmednagar"})
+> db.MONGO2.insert({Ename:"Hrishi",Eid:2,Age:19,Post:"CEO",Add:"Akola"})
+> db.MONGO2.insert({Ename:"Snehal",Eid:3,Age:19,Post:"CEO2",Add:"Nagpur"})
+> db.MONGO2.find().pretty()
+{
+	"_id" : ObjectId("5badbfe8183516acb573747a"),
+	"Ename" : "Pratiksha",
+	"Eid" : 1,
+	"Age" : 19,
+	"Post" : "DataAdmin",
+	"Add" : "Ahmednagar"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+
+INSERT DOCUMENTS:
+
+> db.MONGO2.insert({Ename:"Amol",Eid:4,Age:20,Post:"Developer",Add:"Rahuri"})
+
+> db.MOMGO2.save({Ename:"Komal",Eid:5,Age:20,Post:"Developer",Add:"Supa"})
+> db.MONGO2.find().pretty()
+{
+	"_id" : ObjectId("5badbfe8183516acb573747a"),
+	"Ename" : "Pratiksha",
+	"Eid" : 1,
+	"Age" : 19,
+	"Post" : "DataAdmin",
+	"Add" : "Ahmednagar"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+
+INSERT DOCUMENT USING SAVE:
+
+> db.MOMGO2.save({Ename:"Komal",Eid:5,Age:20,Post:"Developer",Add:"Supa"})
+> db.MONGO2.find().pretty()
+{
+	"_id" : ObjectId("5badbfe8183516acb573747a"),
+	"Ename" : "Pratiksha",
+	"Eid" : 1,
+	"Age" : 19,
+	"Post" : "DataAdmin",
+	"Add" : "Ahmednagar"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+> db.MONGO2.insert({Ename:"Joe",Eid:4,Age:25,Post:"Developer",Add:"USA"})
+> db.MOMGO2.save({Ename:"Komal",Eid:5,Age:20,Post:"Developer",Add:"Supa"})
+> db.MONGO2.find().pretty()
+{
+	"_id" : ObjectId("5badbfe8183516acb573747a"),
+	"Ename" : "Pratiksha",
+	"Eid" : 1,
+	"Age" : 19,
+	"Post" : "DataAdmin",
+	"Add" : "Ahmednagar"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+> db.MOMGO2.save({Ename:"Komal",Eid:5,Age:20,Post:"Developer",Add:"Supa"})
+
+DISPLAY DOCUMENTS:
+
+> db.MONGO2.find()
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Ename" : "Pratiksha", "Eid" : 1, "Age" : 19, "Post" : "DataAdmin", "Add" : "Ahmednagar" }
+{ "_id" : ObjectId("5badc015183516acb573747b"), "Ename" : "Hrishi", "Eid" : 2, "Age" : 19, "Post" : "CEO", "Add" : "Akola" }
+{ "_id" : ObjectId("5badc03f183516acb573747c"), "Ename" : "Snehal", "Eid" : 3, "Age" : 19, "Post" : "CEO2", "Add" : "Nagpur" }
+{ "_id" : ObjectId("5badc0a7183516acb573747d"), "Ename" : "Amol", "Eid" : 4, "Age" : 20, "Post" : "Developer", "Add" : "Rahuri" }
+{ "_id" : ObjectId("5badc224183516acb5737480"), "Ename" : "Joe", "Eid" : 4, "Age" : 25, "Post" : "Developer", "Add" : "USA" }
+
+> db.MOMGO2.save({Ename:"Komal",Eid:5,Age:20,Post:"Developer",Add:"Supa"})
+> db.MONGO2.find()
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Ename" : "Pratiksha", "Eid" : 1, "Age" : 19, "Post" : "DataAdmin", "Add" : "Ahmednagar" }
+{ "_id" : ObjectId("5badc015183516acb573747b"), "Ename" : "Hrishi", "Eid" : 2, "Age" : 19, "Post" : "CEO", "Add" : "Akola" }
+{ "_id" : ObjectId("5badc03f183516acb573747c"), "Ename" : "Snehal", "Eid" : 3, "Age" : 19, "Post" : "CEO2", "Add" : "Nagpur" }
+{ "_id" : ObjectId("5badc0a7183516acb573747d"), "Ename" : "Amol", "Eid" : 4, "Age" : 20, "Post" : "Developer", "Add" : "Rahuri" }
+{ "_id" : ObjectId("5badc224183516acb5737480"), "Ename" : "Joe", "Eid" : 4, "Age" : 25, "Post" : "Developer", "Add" : "USA" }
+> db.MONGO2.save({Ename:"Mental",Eid:4,Age:25,Post:"Developer",Add:"UK"})
+> db.MONGO2.find().pretty()
+{
+	"_id" : ObjectId("5badbfe8183516acb573747a"),
+	"Ename" : "Pratiksha",
+	"Eid" : 1,
+	"Age" : 19,
+	"Post" : "DataAdmin",
+	"Add" : "Ahmednagar"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+{
+	"_id" : ObjectId("5badc34f183516acb5737484"),
+	"Ename" : "Mental",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "UK"
+}
+
+AGE IS GREATER THAN 19:
+ 
+> db.MONGO2.find({Age:{$gt:19}}).pretty()
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+{
+	"_id" : ObjectId("5badc34f183516acb5737484"),
+	"Ename" : "Mental",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "UK"
+}
+
+UPDATE:
+
+> db.MONGO2.update({Post:"DataAdmin"},{Post:"DatabaseAdmin"})
+> db.MONGO2.find().pretty()
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Post" : "DatabaseAdmin" }
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+
+
+> db.MONGO2.update({Ename:"Pratiksha",Eid:1,Age:19,Post:"DataAdmin",Add:"Ahmednagar"},{Ename:"Pratiksha",Eid:19,Age:19,Post:"DatabaseAdmin",Add:"Nagar"})
+> db.MONGO2.find().pretty()
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Post" : "DatabaseAdmin" }
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+{
+	"_id" : ObjectId("5badc34f183516acb5737484"),
+	"Ename" : "Mental",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "UK"
+}
+
+SORT DOCUMENTS:
+
+> db.MONGO2.find().sort({Ename:1})
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Post" : "DatabaseAdmin" }
+{ "_id" : ObjectId("5badc0a7183516acb573747d"), "Ename" : "Amol", "Eid" : 4, "Age" : 20, "Post" : "Developer", "Add" : "Rahuri" }
+{ "_id" : ObjectId("5badc015183516acb573747b"), "Ename" : "Hrishi", "Eid" : 2, "Age" : 19, "Post" : "CEO", "Add" : "Akola" }
+{ "_id" : ObjectId("5badc224183516acb5737480"), "Ename" : "Joe", "Eid" : 4, "Age" : 25, "Post" : "Developer", "Add" : "USA" }
+{ "_id" : ObjectId("5badc34f183516acb5737484"), "Ename" : "Mental", "Eid" : 4, "Age" : 25, "Post" : "Developer", "Add" : "UK" }
+{ "_id" : ObjectId("5badc03f183516acb573747c"), "Ename" : "Snehal", "Eid" : 3, "Age" : 19, "Post" : "CEO2", "Add" : "Nagpur" }
+
+SORT DOCUMENTS:
+
+> db.MONGO2.find().sort({Ename:1}).pretty()
+{ "_id" : ObjectId("5badbfe8183516acb573747a"), "Post" : "DatabaseAdmin" }
+{
+	"_id" : ObjectId("5badc0a7183516acb573747d"),
+	"Ename" : "Amol",
+	"Eid" : 4,
+	"Age" : 20,
+	"Post" : "Developer",
+	"Add" : "Rahuri"
+}
+{
+	"_id" : ObjectId("5badc015183516acb573747b"),
+	"Ename" : "Hrishi",
+	"Eid" : 2,
+	"Age" : 19,
+	"Post" : "CEO",
+	"Add" : "Akola"
+}
+{
+	"_id" : ObjectId("5badc224183516acb5737480"),
+	"Ename" : "Joe",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "USA"
+}
+{
+	"_id" : ObjectId("5badc34f183516acb5737484"),
+	"Ename" : "Mental",
+	"Eid" : 4,
+	"Age" : 25,
+	"Post" : "Developer",
+	"Add" : "UK"
+}
+{
+	"_id" : ObjectId("5badc03f183516acb573747c"),
+	"Ename" : "Snehal",
+	"Eid" : 3,
+	"Age" : 19,
+	"Post" : "CEO2",
+	"Add" : "Nagpur"
+}
+> 
+
+> db.Sample1.insert({Ename:"Thor",salary:50000,eid:2,post:"Operation"})
+> db.Sample1.find().pretty()
+{
+	"_id" : ObjectId("5bb5bce314af2bb4250007e8"),
+	"Ename" : "Rock",
+	"salary" : 50900,
+	"eid" : 6
+}
+{
+	"_id" : ObjectId("5bb5bcff14af2bb4250007e9"),
+	"Ename" : "Joe",
+	"salary" : 52000,
+	"eid" : 4
+}
+{
+	"_id" : ObjectId("5bb5bd1914af2bb4250007ea"),
+	"Ename" : "Vin",
+	"salary" : 43879,
+	"eid" : 1
+}
+{
+	"_id" : ObjectId("5bb5bfc314af2bb4250007ec"),
+	"Ename" : "Thor",
+	"salary" : 50000,
+	"eid" : 2,
+	"post" : "Operation"
+}
+
+REMOVE DOCUMENT:
+
+> db.Sample1.remove({post:"Operation"})
+> db.Sample1.find().pretty()
+{
+	"_id" : ObjectId("5bb5bce314af2bb4250007e8"),
+	"Ename" : "Rock",
+	"salary" : 50900,
+	"eid" : 6
+}
+{
+	"_id" : ObjectId("5bb5bcff14af2bb4250007e9"),
+	"Ename" : "Joe",
+	"salary" : 52000,
+	"eid" : 4
+}
+{
+	"_id" : ObjectId("5bb5bd1914af2bb4250007ea"),
+	"Ename" : "Vin",
+	"salary" : 43879,
+	"eid" : 1
+}
+
+UPDATE Joe Salary:
+
+> 
+> db.Sample1.update({Ename:"Joe"},{$inc:{salary:2000}})
+> db.Sample1.find().pretty()
+{
+	"_id" : ObjectId("5bb5bce314af2bb4250007e8"),
+	"Ename" : "Rock",
+	"salary" : 50900,
+	"eid" : 6
+}
+{
+	"_id" : ObjectId("5bb5bcff14af2bb4250007e9"),
+	"Ename" : "Joe",
+	"salary" : 52000,
+	"eid" : 4
+}
+{
+	"_id" : ObjectId("5bb5bd1914af2bb4250007ea"),
+	"Ename" : "Vin",
+	"salary" : 43879,
+	"eid" : 1
+}
+
+
+DISPLAY FIRST 2 DOCUMENTS:
+
+> db.Sample1.find().limit(2);
+{ "_id" : ObjectId("5bb5bce314af2bb4250007e8"), "Ename" : "Rock", "salary" : 50900, "eid" : 6 }
+{ "_id" : ObjectId("5bb5bcff14af2bb4250007e9"), "Ename" : "Joe", "salary" : 52000, "eid" : 4 }
+> 
+DISPLAY FIRST 4 DOCUMENTS:
+
+> db.Sample1.find().limit(4);
+{ "_id" : ObjectId("5bb5bce314af2bb4250007e8"), "Ename" : "Rock", "salary" : 50900, "eid" : 6 }
+{ "_id" : ObjectId("5bb5bcff14af2bb4250007e9"), "Ename" : "Joe", "salary" : 52000, "eid" : 4 }
+{ "_id" : ObjectId("5bb5bd1914af2bb4250007ea"), "Ename" : "Vin", "salary" : 43879, "eid" : 1 }
+{ "_id" : ObjectId("5bb5c34614af2bb4250007ed"), "Ename" : "Thor", "salary" : 50000, "eid" : 2, "post" : "Operation" }
+

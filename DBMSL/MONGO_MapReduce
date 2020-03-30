@@ -1,0 +1,120 @@
+MONGODB ASSIGNMENT  "MAP REDUCE"
+
+
+comp227@comp227-desktop:~$ mongo
+MongoDB shell version: 2.4.9
+connecting to: test
+
+
+> show databases;
+dbs	0.203125GB
+local	0.078125GB
+mmit	0.203125GB
+mongo3	0.078125GB
+mongo_database	0.203125GB
+test	0.203125GB
+> use mmit
+switched to db mmit
+
+
+> db.createCollection("staff1")
+{ db.staff1.insert([{name:"komal",age:20,address:"pune"}, {name:"pratiksha",age:19,address:"pune"},{name:"vishal",age:22,address:"lohgoan"},{name:"varad",age:21,address:"jintur"},{name:"heena",age:23,address:"pune"}])
+> 
+> 
+> 
+> db.staff1.find()
+{ "_id" : ObjectId("5bb5b875fb8f5aa8b19879cf"), "name" : "komal", "age" : 20, "address" : "pune" }
+{ "_id" : ObjectId("5bb5b875fb8f5aa8b19879d0"), "name" : "pratiksha", "age" : 19, "address" : "pune" }
+{ "_id" : ObjectId("5bb5b875fb8f5aa8b19879d1"), "name" : "vishal", "age" : 22, "address" : "lohgoan" }
+{ "_id" : ObjectId("5bb5b875fb8f5aa8b19879d2"), "name" : "varad", "age" : 21, "address" : "jintur" }
+{ "_id" : ObjectId("5bb5b875fb8f5aa8b19879d3"), "name" : "heena", "age" : 23, "address" : "pune" }
+{ "_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d4"), "name" : "komal", "age" : 20, "address" : "pune" }
+{ "_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d5"), "name" : "pratiksha", "age" : 19, "address" : "pune" }
+{ "_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d6"), "name" : "vishal", "age" : 22, "address" : "lohgoan" }
+{ "_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d7"), "name" : "varad", "age" : 21, "address" : "jintur" }
+{ "_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d8"), "name" : "heena", "age" : 23, "address" : "pune" }
+> db.staff1.find().pretty()
+{
+	"_id" : ObjectId("5bb5b875fb8f5aa8b19879cf"),
+	"name" : "komal",
+	"age" : 20,
+	"address" : "pune"
+}
+{
+	"_id" : ObjectId("5bb5b875fb8f5aa8b19879d0"),
+	"name" : "pratiksha",
+	"age" : 19,
+	"address" : "pune"
+}
+{
+	"_id" : ObjectId("5bb5b875fb8f5aa8b19879d1"),
+	"name" : "vishal",
+	"age" : 22,
+	"address" : "lohgoan"
+}
+{
+	"_id" : ObjectId("5bb5b875fb8f5aa8b19879d2"),
+	"name" : "varad",
+	"age" : 21,
+	"address" : "jintur"
+}
+{
+	"_id" : ObjectId("5bb5b875fb8f5aa8b19879d3"),
+	"name" : "heena",
+	"age" : 23,
+	"address" : "pune"
+}
+{
+	"_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d4"),
+	"name" : "komal",
+	"age" : 20,
+	"address" : "pune"
+}
+{
+	"_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d5"),
+	"name" : "pratiksha",
+	"age" : 19,
+	"address" : "pune"
+}
+{
+	"_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d6"),
+	"name" : "vishal",
+	"age" : 22,
+	"address" : "lohgoan"
+}
+{
+	"_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d7"),
+	"name" : "varad",
+	"age" : 21,
+	"address" : "jintur"
+}
+{
+	"_id" : ObjectId("5bb5b8c2fb8f5aa8b19879d8"),
+	"name" : "heena",
+	"age" : 23,
+	"address" : "pune"
+}
+
+
+
+> var Mapfunction = function(){emit(this.name,this.age)}
+> var reducefunction = function(key,values){return array.sum(values)}
+> db.staff1.mapReduce(Mapfunction,reducefunction,{'out':'Resultant'})
+{
+	"result" : "Resultant",
+	"timeMillis" : 6,
+	"counts" : {
+		"input" : 10,
+		"emit" : 10,
+		"reduce" : 5,
+		"output" : 5
+	},
+	"ok" : 1,
+}
+> db.Resultant.find().pretty()
+{ "_id" : "heena", "value" : 46 }
+{ "_id" : "komal", "value" : 40 }
+{ "_id" : "pratiksha", "value" : 38 }
+{ "_id" : "varad", "value" : 42 }
+{ "_id" : "vishal", "value" : 44 }
+

@@ -1,0 +1,153 @@
+CREATE TABLE:
+
+mysql> create table student(s_name char(40),s_id int,s_age int,s_phno int,s_bloodgrp char(40));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| s_name     | char(40) | YES  |     | NULL    |       |
+| s_id       | int(11)  | YES  |     | NULL    |       |
+| s_age      | int(11)  | YES  |     | NULL    |       |
+| s_phno     | int(11)  | YES  |     | NULL    |       |
+| s_bloodgrp | char(40) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+DROP TABLE:
+
+mysql> drop table emp;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc emp;
+ERROR 1146 (42S02): Table 'Tiger.emp' doesn't exist
+
+CREATE TABLE:
+
+mysql> create table emp(e_name char(40),e_id int,e_bloodgrp char(40),e_age int);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create view stud as select s_id,s_name from student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc stud;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| s_id   | int(11)  | YES  |     | NULL    |       |
+| s_name | char(40) | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+INSERT VALUE:
+
+mysql> insert into student value('Pratiksha',37,19,9999999999,'O+');
+Query OK, 1 row affected, 1 warning (0.03 sec)
+
+mysql> insert into student value('Pradip',38,20,9999999999,'O-');
+Query OK, 1 row affected, 1 warning (0.04 sec)
+
+CREATE INDEX:
+
+mysql> create index s_roll on student (s_name);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+CREATE UNIQUE INDEX:
+
+mysql> create unique index s_rolll on student (s_name);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+DROP INDEX:
+
+mysql> drop index s_roll on student;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+ALTER TABLE WITH ADD CLAUSE:
+
+mysql> alter table student add address char(40);
+Query OK, 2 rows affected (0.21 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| s_name     | char(40) | YES  | UNI | NULL    |       |
+| s_id       | int(11)  | YES  |     | NULL    |       |
+| s_age      | int(11)  | YES  |     | NULL    |       |
+| s_phno     | int(11)  | YES  |     | NULL    |       |
+| s_bloodgrp | char(40) | YES  |     | NULL    |       |
+| address    | char(40) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+ALTER TABLE WITH MODIFY CLAUDE:
+
+mysql> alter table student modify address char(48);
+Query OK, 2 rows affected (0.22 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| s_name     | char(40) | YES  | UNI | NULL    |       |
+| s_id       | int(11)  | YES  |     | NULL    |       |
+| s_age      | int(11)  | YES  |     | NULL    |       |
+| s_phno     | int(11)  | YES  |     | NULL    |       |
+| s_bloodgrp | char(40) | YES  |     | NULL    |       |
+| address    | char(48) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+SYNONYM or RENAME:
+
+mysql> rename table student to student1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc student1;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| s_name     | char(40) | YES  | UNI | NULL    |       |
+| s_id       | int(11)  | YES  |     | NULL    |       |
+| s_age      | int(11)  | YES  |     | NULL    |       |
+| s_phno     | int(11)  | YES  |     | NULL    |       |
+| s_bloodgrp | char(40) | YES  |     | NULL    |       |
+| address    | char(48) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+RELPACE VIEW:
+
+mysql> create or replace view stud as select s_age,s_phno from student1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc stud;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| s_age  | int(11) | YES  |     | NULL    |       |
+| s_phno | int(11) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+CREATE SEQUENCE:
+
+create table student (s_id int NOT NULL auto_increment,s_name char(40),s_age int,primary key(s_id));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc student;
++--------+----------+------+-----+---------+----------------+
+| Field  | Type     | Null | Key | Default | Extra          |
++--------+----------+------+-----+---------+----------------+
+| s_id   | int(11)  | NO   | PRI | NULL    | auto_increment |
+| s_name | char(40) | YES  |     | NULL    |                |
+| s_age  | int(11)  | YES  |     | NULL    |                |
++--------+----------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)

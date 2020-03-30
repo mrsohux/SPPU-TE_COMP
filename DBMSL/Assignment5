@@ -1,0 +1,60 @@
+mysql> use Assignment5;
+Database changed
+
+CREATE:-
+
+mysql> create table Library(book_id int,book_name varchar(40),author varchar(40));
+Query OK, 0 rows affected (0.07 sec)
+
+INSERT:-
+
+mysql> insert into Library values(1,'Java','Balguru Swami');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from Library; 
++---------+-----------+---------------+
+| book_id | book_name | author        |
++---------+-----------+---------------+
+|       1 | Java      | Balguru Swami |
++---------+-----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> create table Library_audit(book_id int primary key,book_name varchar(40),modified_date datetime default null,action varchar(30) default null);
+Query OK, 0 rows affected (0.09 sec)
+
+TRIGGER SYNTAX:-
+mysql> delimiter $$ 
+mysql> create trigger t1 
+    -> before update on Library
+    -> for each row 
+    -> begin 
+    -> insert into Library_audit 
+    -> set action='UPDATE', 
+    -> book_id=old.book_id, 
+    -> book_name=old.book_name, 
+    -> modified_date=now();
+    -> end$$
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> delimiter ;
+mysql> update Library set book_name='DBMS' where book_id=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Library;
++---------+-----------+---------------+
+| book_id | book_name | author        |
++---------+-----------+---------------+
+|       1 | DBMS      | Balguru Swami |
++---------+-----------+---------------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from Library_audit;
++---------+-----------+---------------------+--------+
+| book_id | book_name | modified_date       | action |
++---------+-----------+---------------------+--------+
+|       1 | Java      | 2018-08-29 12:14:57 | UPDATE |
++---------+-----------+---------------------+--------+
+1 row in set (0.00 sec)
+

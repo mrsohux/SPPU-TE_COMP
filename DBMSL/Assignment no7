@@ -1,0 +1,178 @@
+PROCEDURE:-
+
+mysql> create procedure pr17(in a int,in b char(40))
+    -> begin 
+    -> declare i date;
+    -> declare var1 date;
+    -> declare j int;
+    -> declare fine_amt int;
+    -> set var1=current_date();
+    -> select DateofIssue into i from Borrower where Rollin=a and NameofBook=b;
+    -> select datediff(i,var1) into j; 
+    -> select i;
+    -> select var1;
+    -> select j;
+    -> if(j<=15 and j<=30) then
+    -> set fine_amt=j*5;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> elseif(j>=30) then
+    -> set fine_amt=j*50;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> end if;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pr17(1,'Java');
+    -> $$
++------------+
+| i          |
++------------+
+| 2018-09-02 |
++------------+
+1 row in set (0.00 sec)
+
++------------+
+| var1       |
++------------+
+| 2018-09-19 |
++------------+
+1 row in set (0.00 sec)
+
++------+
+| j    |
++------+
+|   17 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 1 row affected (0.13 sec)
+mysql> select * from Fine;
+    -> $$
++---------+------------+------+
+| Roll_no | Date       | Amt  |
++---------+------------+------+
+|       1 | 2018-09-19 |   85 |
++---------+------------+------+
+1 row in set (0.04 sec)
+
+mysql> create procedure lab4(in a int,in b char(40))
+    -> begin 
+    -> declare i date;
+    -> declare var1 date;
+    -> declare j int;
+    -> declare fine_amt int;
+    -> set var1=current_date();
+    -> select DateofIssue into i from Borrower where Rollin=a and NameofBook=b;
+    -> select datediff(var1,i) into j; 
+    -> select i;
+    -> select var1;
+    -> select j;
+    -> if(j<=15 and j<=30) then
+    -> set fine_amt=j*5;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> elseif(j>=30) then
+    -> set fine_amt=j*50;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> end if;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call lab4(2,'C++');
+    -> $$
++------------+
+| i          |
++------------+
+| 2018-09-03 |
++------------+
+1 row in set (0.00 sec)
+
++------------+
+| var1       |
++------------+
+| 2018-09-19 |
++------------+
+1 row in set (0.00 sec)
+
++------+
+| j    |
++------+
+|   16 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from Fine;
+    -> $$
++---------+------------+------+
+| Roll_no | Date       | Amt  |
++---------+------------+------+
+|       1 | 2018-09-19 |   85 |
+|       3 | 2018-09-19 |   80 |
++---------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> 
+mysql> create procedure lab2(in a int,in b char(40))
+    -> begin 
+    -> declare i date;
+    -> declare var1 date;
+    -> declare j int;
+    -> declare fine_amt int;
+    -> set var1=current_date();
+    -> select DateofIssue into i from Borrower where Rollin=a and NameofBook=b;
+    -> select datediff(var1,i) into j; 
+    -> select i;
+    -> select var1;
+    -> select j;
+    -> if(j<=15 and j<=30) then
+    -> set fine_amt=j*5;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> elseif(j>=30) then
+    -> set fine_amt=j*50;
+    -> insert into Fine values(a,var1,fine_amt);
+    -> end if;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call lab2(3,'TOC');
+    -> $$
++------------+
+| i          |
++------------+
+| 2018-08-01 |
++------------+
+1 row in set (0.00 sec)
+
++------------+
+| var1       |
++------------+
+| 2018-09-19 |
++------------+
+1 row in set (0.00 sec)
+
++------+
+| j    |
++------+
+|   49 |
++------+
+1 row in set (0.00 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from Fine;
+    -> $$
++---------+------------+------+
+| Roll_no | Date       | Amt  |
++---------+------------+------+
+|       1 | 2018-09-19 |   85 |
+|       3 | 2018-09-19 |  245 |
+|       3 | 2018-09-19 |  245 |
++---------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> 
+

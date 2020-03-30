@@ -1,0 +1,138 @@
+Database changed
+mysql> delimiter $$
+
+mysql> desc Stud_Marks;
+    -> $$
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(40) | YES  |     | NULL    |       |
+| total_marks | int(11)  | YES  |     | NULL    |       |
+| Roll_no     | int(11)  | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Result;
+    -> $$
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| Roll  | int(11)  | YES  |     | NULL    |       |
+| Name  | char(40) | YES  |     | NULL    |       |
+| Class | char(40) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+CREATE PROCEDURE:-
+
+mysql> create procedure grade2(in r int,out dis varchar(40))
+    -> begin
+    -> declare marks int;
+    -> select total_marks into marks from Stud_Marks where Roll_no=r;
+    -> if(marks<=1500 and marks>=990) then
+    -> set dis='Destinction';
+    -> elseif(marks<=989 and marks>=900) then
+    -> set dis='First_Class';
+    -> elseif(marks<=899 and marks>=825) then
+    -> set dis='Higher_SecondClass';
+    -> end if;
+    -> end$$
+Query OK, 0 rows affected (0.00 sec)
+
+CALL PROCEDURE:-
+
+mysql> call grade2(1,@dis);
+    -> $$
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @dis;
+    -> $$
++-------------+
+| @dis        |
++-------------+
+| Destinction |
++-------------+
+1 row in set (0.02 sec)
+mysql> call grade2(2,@dis);
+    -> $$
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select @dis;
+    -> $$
++-------------+
+| @dis        |
++-------------+
+| First_Class |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> call grade2(3,@dis);
+    -> $$
+Query OK, 1 row affected (0.00 sec)
+
+STORED FUNCTION:-
+
+mysql> desc Stud_Marks;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(40) | YES  |     | NULL    |       |
+| total_marks | int(11)  | YES  |     | NULL    |       |
+| Roll_no     | int(11)  | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table Stud_Marks add column Class varchar(40);
+Query OK, 3 rows affected (0.64 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc Stud_Marks;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| name        | char(40)    | YES  |     | NULL    |       |
+| total_marks | int(11)     | YES  |     | NULL    |       |
+| Roll_no     | int(11)     | YES  |     | NULL    |       |
+| Class       | varchar(40) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+STORED FUNCTION:-
+
+mysql> create function fun_grade2(temp int)returns varchar(40)
+    -> begin
+    -> declare p_roll int;
+    -> declare p_name varchar(40);
+    -> declare p_total int;
+    -> declare p_class varchar(40);
+    -> select name,total_marks,roll_no into p_name,p_total,p_roll from Stud_Marks where Roll_no=temp;
+    -> if p_total<=1500 and p_total>=920 then
+    -> set p_class='distinction';
+    -> else if p_total<=989 and p_total>=900 then
+    -> set p_class='First class';
+    -> else if p_total<=899 and p_total>=825 then
+    -> set p_class='Higher second class';
+    -> else 
+    -> set p_class='Fail';
+    -> end if;
+    -> end if;
+    -> end if;
+    -> return(p_class);
+    -> end;
+    -> 
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select name,total_marks,fun_grade2(Roll_no) as p_class from Stud_Marks;
+    -> $$
++-----------+-------------+-------------+
+| name      | total_marks | p_class     |
++-----------+-------------+-------------+
+| Pratiksha |        1400 | distinction |
+| Rushi     |         993 | distinction |
+| Harish    |         800 | Fail        |
++-----------+-------------+-------------+
+3 rows in set (0.02 sec)
+
+
+
